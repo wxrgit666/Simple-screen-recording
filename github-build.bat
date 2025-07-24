@@ -8,14 +8,15 @@ set CONFIGURATION=Release
 set PLATFORM=x64
 
 echo Building solution without package signing...
-REM 禁用签名，直接构建
-msbuild FluentScreenRecorder.sln ^
+REM 禁用签名，直接构建主项目
+msbuild FluentScreenRecorder\FluentScreenRecorder.csproj ^
   /p:Configuration=%CONFIGURATION% ^
   /p:Platform=%PLATFORM% ^
   /p:AppxPackageSigningEnabled=false ^
   /p:GenerateAppxPackageOnBuild=true ^
   /p:UapAppxPackageBuildMode=SideloadOnly ^
-  /p:AppxBundle=Never
+  /p:AppxBundle=Never ^
+  /p:AppxPackageDir=AppPackages\
 
 echo.
 echo Checking for output files...

@@ -29,6 +29,13 @@ jobs:
       run: |
         echo Running GitHub build script...
         call github-build.bat
+        
+    - name: Fallback build if main build fails
+      if: failure()
+      shell: cmd
+      run: |
+        echo Main build failed, trying fallback build...
+        call fallback-build.bat
 
     - name: Upload any build outputs
       uses: actions/upload-artifact@v4
