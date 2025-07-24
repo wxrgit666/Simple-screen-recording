@@ -1,0 +1,296 @@
+﻿<Page
+    x:Class="ScreenMaster.Views.MembershipPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- 清新浅色主题 -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#FF2563EB"/>
+        <SolidColorBrush x:Key="PrimaryLightBrush" Color="#FF60A5FA"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#FFEA580C"/>
+        <SolidColorBrush x:Key="SuccessBrush" Color="#FF059669"/>
+        <SolidColorBrush x:Key="SoftGrayBrush" Color="#FFF8FAFC"/>
+        <SolidColorBrush x:Key="LightGrayBrush" Color="#FFF1F5F9"/>
+        
+        <!-- 会员卡片样式 -->
+        <Style x:Key="PlanCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="BorderBrush" Value="{StaticResource LightGrayBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        
+        <!-- 推荐卡片样式 -->
+        <Style x:Key="RecommendedCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource SoftGrayBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 顶部导航 -->
+        <Grid Grid.Row="0" Height="64" Background="White" Padding="20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button
+                x:Name="BackButton"
+                Grid.Column="0"
+                Background="Transparent"
+                BorderThickness="0"
+                VerticalAlignment="Center"
+                Click="BackButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon FontSize="16" Glyph="&#xE72B;" Foreground="{StaticResource PrimaryBrush}"/>
+                    <TextBlock Text="返回" FontWeight="SemiBold" Foreground="{StaticResource PrimaryBrush}"/>
+                </StackPanel>
+            </Button>
+            
+            <TextBlock
+                Grid.Column="1"
+                Text="会员升级"
+                FontSize="24"
+                FontWeight="Bold"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" Padding="20">
+            <StackPanel Spacing="32" MaxWidth="800" HorizontalAlignment="Center">
+                
+                <!-- 标题区域 -->
+                <StackPanel Spacing="16" HorizontalAlignment="Center">
+                    <TextBlock
+                        Text="🚀 解锁专业录制功能"
+                        FontSize="32"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        Foreground="{StaticResource PrimaryBrush}"/>
+                    <TextBlock
+                        Text="选择适合您的会员方案，享受更强大的录制体验"
+                        FontSize="16"
+                        HorizontalAlignment="Center"
+                        Foreground="Gray"
+                        TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <!-- 会员方案对比 -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 免费版 -->
+                    <Border Grid.Column="0" Style="{StaticResource PlanCardStyle}">
+                        <StackPanel Spacing="20">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="免费版" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock Text="基础录制功能" FontSize="14" Foreground="Gray"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="￥0" FontSize="36" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
+                                <TextBlock Text="永久免费" FontSize="12" Foreground="Gray"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="12">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="最长10分钟录制" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="720P高清录制" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="基础编辑功能" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE711;" Foreground="Gray"/>
+                                    <TextBlock Text="水印移除" FontSize="14" Foreground="Gray"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE711;" Foreground="Gray"/>
+                                    <TextBlock Text="4K录制" FontSize="14" Foreground="Gray"/>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            <Button
+                                Height="44"
+                                HorizontalAlignment="Stretch"
+                                Background="{StaticResource LightGrayBrush}"
+                                CornerRadius="12"
+                                IsEnabled="False">
+                                <TextBlock Text="当前方案" FontWeight="SemiBold" Foreground="Gray"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 高级会员 (推荐) -->
+                    <Border Grid.Column="1" Style="{StaticResource RecommendedCardStyle}">
+                        <StackPanel Spacing="20">
+                            <StackPanel>
+                                <Border
+                                    Background="{StaticResource PrimaryBrush}"
+                                    CornerRadius="12"
+                                    Padding="8,4"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,8">
+                                    <TextBlock Text="🔥 推荐" FontSize="12" FontWeight="Bold" Foreground="White"/>
+                                </Border>
+                                <TextBlock Text="高级会员" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock Text="专业用户首选" FontSize="14" Foreground="Gray"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="4">
+                                <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                    <TextBlock Text="￥19" FontSize="36" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
+                                    <TextBlock Text="￥39" FontSize="18" TextDecorations="Strikethrough" Foreground="Gray" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Text="每月 • 限时5折" FontSize="12" Foreground="Gray" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="12">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="无限时长录制" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="1080P超清录制" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="水印移除" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="高级编辑工具" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="优先技术支持" FontSize="14"/>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            <Button
+                                x:Name="PremiumButton"
+                                Height="44"
+                                HorizontalAlignment="Stretch"
+                                CornerRadius="12"
+                                Click="PremiumButton_Click">
+                                <Button.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#FF2563EB" Offset="0"/>
+                                        <GradientStop Color="#FF1D4ED8" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                                <TextBlock Text="立即升级" FontWeight="Bold" Foreground="White"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 专业会员 -->
+                    <Border Grid.Column="2" Style="{StaticResource PlanCardStyle}">
+                        <StackPanel Spacing="20">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="专业会员" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock Text="团队和企业用户" FontSize="14" Foreground="Gray"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="￥99" FontSize="36" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
+                                <TextBlock Text="每月" FontSize="12" Foreground="Gray"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="12">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="高级会员全部功能" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="4K超高清录制" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="云端存储同步" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="批量处理工具" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="16" Glyph="&#xE73E;" Foreground="{StaticResource SuccessBrush}"/>
+                                    <TextBlock Text="专属客服支持" FontSize="14"/>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            <Button
+                                x:Name="ProfessionalButton"
+                                Height="44"
+                                HorizontalAlignment="Stretch"
+                                Background="{StaticResource AccentBrush}"
+                                CornerRadius="12"
+                                Click="ProfessionalButton_Click">
+                                <TextBlock Text="立即升级" FontWeight="SemiBold" Foreground="White"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- 常见问题 -->
+                <StackPanel Spacing="16">
+                    <TextBlock Text="💡 常见问题" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    
+                    <Border Background="White" CornerRadius="12" Padding="20" BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="1">
+                        <StackPanel Spacing="16">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="Q: 升级后可以随时取消吗？" FontWeight="SemiBold"/>
+                                <TextBlock Text="A: 当然可以！您可以随时在设置中取消订阅，已购买的时长会继续有效直到到期。" TextWrapping="Wrap" Foreground="Gray"/>
+                            </StackPanel>
+                            <Border Height="1" Background="{StaticResource LightGrayBrush}"/>
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="Q: 支持哪些支付方式？" FontWeight="SemiBold"/>
+                                <TextBlock Text="A: 支持微信支付、支付宝、银行卡等多种支付方式，安全便捷。" TextWrapping="Wrap" Foreground="Gray"/>
+                            </StackPanel>
+                            <Border Height="1" Background="{StaticResource LightGrayBrush}"/>
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="Q: 会员功能可以在多台设备使用吗？" FontWeight="SemiBold"/>
+                                <TextBlock Text="A: 可以！同一账号可以在最多3台设备上同时使用会员功能。" TextWrapping="Wrap" Foreground="Gray"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- 底部说明 -->
+                <StackPanel Spacing="8" HorizontalAlignment="Center">
+                    <TextBlock Text="✨ 30天无理由退款保证" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="如果您对会员服务不满意，可在30天内申请全额退款" FontSize="12" Foreground="Gray" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

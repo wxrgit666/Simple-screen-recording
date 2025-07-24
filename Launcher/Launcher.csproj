@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>launcher</AssemblyName>
+    <RootNamespace>SimpleRecorderLauncher</RootNamespace>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <StartupObject>SimpleRecorderLauncher.Program</StartupObject>
+    <Win32Resource />
+    <ApplicationManifest />
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>true</PublishTrimmed>
+  </PropertyGroup>
+</Project>

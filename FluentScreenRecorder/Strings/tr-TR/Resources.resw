@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="Bitrate" xml:space="preserve">
+    <value>Bit hızı</value>
+  </data>
+  <data name="BugReport" xml:space="preserve">
+    <value>Hata bildir</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Telif hakkı</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Discord" xml:space="preserve">
+    <value>Discord sunucumuza katıl</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Arıza</value>
+  </data>
+  <data name="Framerate" xml:space="preserve">
+    <value>Kare hızı</value>
+  </data>
+  <data name="GalleryView" xml:space="preserve">
+    <value>Galeri Görünümü</value>
+  </data>
+  <data name="GitHub" xml:space="preserve">
+    <value>GitHub deposunu görüntüle</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Gizlilik Politikası</value>
+  </data>
+  <data name="Recording" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>Çözünürlük</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Farklı kaydet</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Paylaş</value>
+  </data>
+  <data name="SourceSizeToggle" xml:space="preserve">
+    <value>Kaynak</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Sürüm</value>
+  </data>
+  <data name="VideoPreview" xml:space="preserve">
+    <value>Video Önizleme</value>
+  </data>
+  <data name="Whatsnew" xml:space="preserve">
+    <value>Neler yeni?</value>
+  </data>
+  <data name="SystemVideoPlayerOption" xml:space="preserve">
+    <value>Videoları açmak için sistem oynatıcısını kullan</value>
+  </data>
+  <data name="OverlayMode" xml:space="preserve">
+    <value>Varsayılan olarak bindirme modunu aç</value>
+  </data>
+  <data name="ExitOverlay" xml:space="preserve">
+    <value>Tam görünüm</value>
+  </data>
+  <data name="GoToOverlay" xml:space="preserve">
+    <value>Mini görünüm</value>
+  </data>
+  <data name="MicSettings" xml:space="preserve">
+    <value>Sistem mikrofon ayarları</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Geri git</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Dosya bilgisi</value>
+  </data>
+  <data name="RecordingStop" xml:space="preserve">
+    <value>Kaydi Durdur</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Kaydediliyor...</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Ses</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Bağış</value>
+  </data>
+</root>

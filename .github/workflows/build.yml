@@ -1,0 +1,47 @@
+name: Build SimpleRecorder
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.3
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.2.0
+
+    - name: Restore NuGet packages
+      run: nuget restore FluentScreenRecorder.sln
+
+    - name: Build UWP Application
+      run: |
+        msbuild FluentScreenRecorder.sln /p:Configuration=Release /p:Platform=x64 /p:GenerateAppxPackageOnBuild=true /p:AppxBundlePlatforms=x64 /p:BuildAppxUploadPackageForUap=true
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: SimpleRecorder-Packages
+        path: |
+          FluentScreenRecorder/AppPackages/**/*
+          FluentScreenRecorder/bin/x64/Release/**/*
+
+    - name: Create Release (on tag)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          FluentScreenRecorder/AppPackages/**/*.msix
+          FluentScreenRecorder/AppPackages/**/*.appx
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
