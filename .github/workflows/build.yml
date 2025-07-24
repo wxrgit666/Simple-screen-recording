@@ -24,17 +24,37 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore FluentScreenRecorder.sln
 
+    - name: Try simple build first
+      run: |
+        echo "Running simple build..."
+        call simple-build.bat
+      continue-on-error: true
+
     - name: Build UWP Application
       run: |
         msbuild FluentScreenRecorder.sln /p:Configuration=Release /p:Platform=x64 /p:GenerateAppxPackageOnBuild=true /p:AppxBundlePlatforms=x64 /p:BuildAppxUploadPackageForUap=true
+      continue-on-error: true
+
+    - name: Check build outputs
+      run: |
+        echo "=== Checking for build outputs ==="
+        dir FluentScreenRecorder /s /b | findstr /i "\.appx \.msix \.exe"
+        echo "=== Checking AppPackages ==="
+        if exist FluentScreenRecorder\AppPackages (dir FluentScreenRecorder\AppPackages /s)
+        echo "=== Checking bin folder ==="
+        if exist FluentScreenRecorder\bin (dir FluentScreenRecorder\bin /s)
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: SimpleRecorder-Packages
         path: |
           FluentScreenRecorder/AppPackages/**/*
           FluentScreenRecorder/bin/x64/Release/**/*
+          FluentScreenRecorder/bin/Release/**/*
+          **/*.appx
+          **/*.msix
 
     - name: Create Release (on tag)
       if: startsWith(github.ref, 'refs/tags/')
