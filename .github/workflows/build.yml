@@ -24,18 +24,11 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore FluentScreenRecorder.sln
 
-    - name: Build with GitHub script
+    - name: Debug build - comprehensive diagnostics
       shell: cmd
       run: |
-        echo Running GitHub build script...
-        call github-build.bat
-        
-    - name: Fallback build if main build fails
-      if: failure()
-      shell: cmd
-      run: |
-        echo Main build failed, trying fallback build...
-        call fallback-build.bat
+        echo Running comprehensive debug build...
+        call debug-build.bat
 
     - name: Upload any build outputs
       uses: actions/upload-artifact@v4
