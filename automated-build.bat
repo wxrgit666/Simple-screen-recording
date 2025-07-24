@@ -22,7 +22,26 @@ powershell -Command ^
 
 echo Step 4: Building UWP application...
 msbuild FluentScreenRecorder\FluentScreenRecorder.csproj ^
-  /t:Build ^
+  /t:Build;_GenerateAppxPackage ^
+  /p:Configuration=Release ^
+  /p:Platform=x64 ^
+  /p:AppxPackageSigningEnabled=true ^
+  /p:PackageCertificateKeyFile=SimpleRecorder_TemporaryKey.pfx ^
+  /p:PackageCertificatePassword=TempPass123! ^
+  /p:GenerateAppxPackageOnBuild=true ^
+  /p:AppxBundle=Never ^
+  /p:BuildProjectReferences=false ^
+  /p:UapAppxPackageBuildMode=SideloadOnly ^
+  /p:AppxPackageDir="AppPackages\\"
+
+echo Step 4a: Building dependencies separately...
+msbuild CaptureEncoder\CaptureEncoder.csproj /t:Build /p:Configuration=Release /p:Platform=x64
+msbuild Microsoft.PowerToys.Settings.UI\Microsoft.PowerToys.Settings.UI.csproj /t:Build /p:Configuration=Release /p:Platform=x64
+msbuild ScreenSenderComponent\ScreenSenderComponent.vcxproj /t:Build /p:Configuration=Release /p:Platform=x64
+
+echo Step 4b: Building main project with dependencies...
+msbuild FluentScreenRecorder\FluentScreenRecorder.csproj ^
+  /t:Build;_GenerateAppxPackage ^
   /p:Configuration=Release ^
   /p:Platform=x64 ^
   /p:AppxPackageSigningEnabled=true ^
