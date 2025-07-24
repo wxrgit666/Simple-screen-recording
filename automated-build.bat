@@ -22,13 +22,16 @@ powershell -Command ^
 
 echo Step 4: Building UWP application...
 msbuild FluentScreenRecorder\FluentScreenRecorder.csproj ^
+  /t:Build ^
   /p:Configuration=Release ^
   /p:Platform=x64 ^
   /p:AppxPackageSigningEnabled=true ^
   /p:PackageCertificateKeyFile=SimpleRecorder_TemporaryKey.pfx ^
   /p:PackageCertificatePassword=TempPass123! ^
   /p:GenerateAppxPackageOnBuild=true ^
-  /p:UapAppxPackageBuildMode=SideloadOnly
+  /p:AppxBundle=Never ^
+  /p:UapAppxPackageBuildMode=SideloadOnly ^
+  /p:AppxPackageDir="AppPackages\\"
 
 echo Step 5: Checking for output files...
 echo ========================================
