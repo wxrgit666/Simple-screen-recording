@@ -24,39 +24,24 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore FluentScreenRecorder.sln
 
-    - name: Try simple build first
+    - name: Build with GitHub script
       shell: cmd
       run: |
-        echo Running simple build...
-        call simple-build.bat
-      continue-on-error: true
+        echo Running GitHub build script...
+        call github-build.bat
 
-    - name: Build UWP Application
-      run: |
-        msbuild FluentScreenRecorder.sln /p:Configuration=Release /p:Platform=x64 /p:GenerateAppxPackageOnBuild=true /p:AppxBundlePlatforms=x64 /p:BuildAppxUploadPackageForUap=true
-      continue-on-error: true
-
-    - name: Check build outputs
-      shell: cmd
-      run: |
-        echo === Checking for build outputs ===
-        dir FluentScreenRecorder /s /b | findstr /i "\.appx \.msix \.exe" || echo No appx/msix/exe files found
-        echo === Checking AppPackages ===
-        if exist FluentScreenRecorder\AppPackages (dir FluentScreenRecorder\AppPackages /s) else (echo AppPackages folder not found)
-        echo === Checking bin folder ===
-        if exist FluentScreenRecorder\bin (dir FluentScreenRecorder\bin /s) else (echo bin folder not found)
-
-    - name: Upload build artifacts
+    - name: Upload any build outputs
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: SimpleRecorder-Packages
+        name: SimpleRecorder-BuildOutput
         path: |
-          FluentScreenRecorder/AppPackages/**/*
-          FluentScreenRecorder/bin/x64/Release/**/*
-          FluentScreenRecorder/bin/Release/**/*
+          FluentScreenRecorder/AppPackages/
+          FluentScreenRecorder/bin/
           **/*.appx
           **/*.msix
+          **/*.exe
+        if-no-files-found: warn
 
     - name: Create Release (on tag)
       if: startsWith(github.ref, 'refs/tags/')
