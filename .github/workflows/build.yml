@@ -25,8 +25,9 @@ jobs:
       run: nuget restore FluentScreenRecorder.sln
 
     - name: Try simple build first
+      shell: cmd
       run: |
-        echo "Running simple build..."
+        echo Running simple build...
         call simple-build.bat
       continue-on-error: true
 
@@ -36,13 +37,14 @@ jobs:
       continue-on-error: true
 
     - name: Check build outputs
+      shell: cmd
       run: |
-        echo "=== Checking for build outputs ==="
-        dir FluentScreenRecorder /s /b | findstr /i "\.appx \.msix \.exe"
-        echo "=== Checking AppPackages ==="
-        if exist FluentScreenRecorder\AppPackages (dir FluentScreenRecorder\AppPackages /s)
-        echo "=== Checking bin folder ==="
-        if exist FluentScreenRecorder\bin (dir FluentScreenRecorder\bin /s)
+        echo === Checking for build outputs ===
+        dir FluentScreenRecorder /s /b | findstr /i "\.appx \.msix \.exe" || echo No appx/msix/exe files found
+        echo === Checking AppPackages ===
+        if exist FluentScreenRecorder\AppPackages (dir FluentScreenRecorder\AppPackages /s) else (echo AppPackages folder not found)
+        echo === Checking bin folder ===
+        if exist FluentScreenRecorder\bin (dir FluentScreenRecorder\bin /s) else (echo bin folder not found)
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
